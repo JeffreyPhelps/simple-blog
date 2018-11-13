@@ -1,2 +1,2 @@
-# simple-blog
-A simple blog site
+# Simple Blog
+A simple RESTful blog app
