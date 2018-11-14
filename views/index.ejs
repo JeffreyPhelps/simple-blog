@@ -1,0 +1,17 @@
+
+
+<% include partials/header %>
+
+<h2>All Blogs:</h2>
+
+<% allBlogs.forEach(function(blog){ %>
+    <div>
+        <h2><%= blog.title %></h2>
+        <span><%= blog.created %></span>
+        <img src="<%= blog.image %>">
+        <p><%= blog.body %></p>
+    </div>
+<% }); %>
+
+<% include partials/footer %>
+
