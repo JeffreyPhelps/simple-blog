@@ -10,15 +10,31 @@ body {
 }
 
 
-#indexImages {
+#indexPost {
+    border: 1px solid lightgrey;
+    width: 33%;
+    padding: 20px;
+}
+
+#indexTitleDate {
+    font-size: .5em;
+    margin-left: 10px;
+}
+
+
+#indexImage {
     width: 150px;
     height: 150px;
 }
 
+#indexMoreLink {
+    font-size: .8em;
+}
 
-
-
-
+#postImage {
+    max-width: 300px;
+    max-height: auto;
+}
 
 
 

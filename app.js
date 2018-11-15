@@ -28,10 +28,6 @@ let Blog = mongoose.model("Blog", blogSchema);
 
 
 
-
-
-
-
 // RESTFUL ROUTES
 
 // Home Route
@@ -51,7 +47,7 @@ app.get("/new", function(req, res){
    res.render("newpost.ejs");
 });
 
-// Create Post Route
+// Create New Post Route
 app.post("/", function(req, res){
     let title = req.body.title;
     let image = req.body.image;
@@ -64,14 +60,24 @@ app.post("/", function(req, res){
             res.render("newpost.ejs");
         } else{
             console.log("A new blog post was added.");
-            console.log(newestPost)
+            console.log(newestPost);
             res.redirect("/");
         }
     });
 });
 
-
-
+// Show Post Route
+app.get("/:id", function(req, res){
+    Blog.findById(req.params.id, function(err, showBlog){
+        if(err){
+            console.log("THERE'S AN ERROR!!!");
+            console.log(err);
+            res.render("/");
+        } else{
+            res.render("post.ejs", {showBlog: showBlog});
+        }
+    });
+});
 
 
 

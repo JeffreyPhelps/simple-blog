@@ -2,14 +2,14 @@
 
 <% include partials/header %>
 
-<h2>All Blogs:</h2>
+<h2>All Posts:</h2>
 
 <% allBlogs.forEach(function(blog){ %>
-    <div>
-        <h2><%= blog.title %> <small>- <span><%= blog.created %></span></small> </h2>
-        <br>
-        <img id="indexImages" src="<%= blog.image %>">
-        <p><%= blog.body %></p>
+    <div id="indexPost">
+        <h2><%= blog.title %><span id="indexTitleDate"><%= blog.created.toDateString() %></span></h2>
+        <img id="indexImage" src="<%= blog.image %>">
+        <p><%= blog.body.substring(0, 120) %>...</p>
+        <a href="/<%= blog._id %>" id="indexMoreLink">READ MORE...</a>
     </div><br><br>
 <% }); %>
 
