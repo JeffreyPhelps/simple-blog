@@ -45,8 +45,9 @@ app.get("/", function(req, res){
     }); 
 });
 
-app.get("/blogs", function(req, res){
-   res.render("index.ejs"); 
+// New Route
+app.get("/new", function(req, res){
+   res.render("newpost.ejs");
 });
 
 
