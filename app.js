@@ -7,7 +7,8 @@
 // Initializing Express.js NPM package
 let express = require("express");
 let app = express();
-app.use(express.static('public'))
+app.use(express.static('public'));
+
 
 // Initializing body-parser NPM package
 let bodyParser = require("body-parser");
@@ -45,12 +46,29 @@ app.get("/", function(req, res){
     }); 
 });
 
-// New Route
+// New Post Route
 app.get("/new", function(req, res){
    res.render("newpost.ejs");
 });
 
-
+// Create Post Route
+app.post("/", function(req, res){
+    let title = req.body.title;
+    let image = req.body.image;
+    let body = req.body.body;
+    let newPost = {title: title, image: image, body: body};
+    Blog.create(newPost, function(err, newestPost){
+        if(err){
+            console.log("THERE'S AN ERROR!!!");
+            console.log(err);
+            res.render("newpost.ejs");
+        } else{
+            console.log("A new blog post was added.");
+            console.log(newestPost)
+            res.redirect("/");
+        }
+    });
+});
 
 
 

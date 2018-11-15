@@ -4,6 +4,21 @@
 
 <div class="ui main text container segment">
     <div class="ui huge header">New Post</div>
+    <form class="ui form" action="/" method="POST" >
+        <div class="field">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="title" required>
+        </div>
+        <div class="field">
+            <label>Image</label>
+            <input type="text" name="image" placeholder="image url">
+        </div>
+        <div class="field">
+            <label>Content</label>
+            <textarea name="body" required></textarea>
+        </div>
+        <input class="ui black big basic button" type="submit">
+    </form>
 </div>
 
 <% include partials/footer %>

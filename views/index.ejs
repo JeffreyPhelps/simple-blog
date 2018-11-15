@@ -6,11 +6,11 @@
 
 <% allBlogs.forEach(function(blog){ %>
     <div>
-        <h2><%= blog.title %></h2>
-        <span><%= blog.created %></span>
-        <img src="<%= blog.image %>">
+        <h2><%= blog.title %> <small>- <span><%= blog.created %></span></small> </h2>
+        <br>
+        <img id="indexImages" src="<%= blog.image %>">
         <p><%= blog.body %></p>
-    </div>
+    </div><br><br>
 <% }); %>
 
 <% include partials/footer %>
