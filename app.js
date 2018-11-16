@@ -15,7 +15,7 @@ let bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Initializing Mongoose NPM package, setting the database name, "simpleblogdb", creating a database schema, 
-// compiling the schema into a model, and connecting the schema to a reference name
+// compiling the schema into a model, and connecting the schema to a reference name, "Blog"
 let mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/simpleblogdb", {useNewUrlParser: true}); // Optional {useNewUrlParser: true} object for Amazon c9.io to clear future error warning
 let blogSchema = new mongoose.Schema({
