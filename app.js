@@ -9,6 +9,13 @@ let express = require("express");
 let app = express();
 app.use(express.static('public'));
 
+// Setting the view engine to ejs
+app.set('view engine', 'ejs');
+
+// Initializing Method-Override NPM package
+let methodOverride = require("method-override");
+app.use(methodOverride("_method"));
+
 
 // Initializing body-parser NPM package
 let bodyParser = require("body-parser");
@@ -78,6 +85,42 @@ app.get("/:id", function(req, res){
         }
     });
 });
+
+
+// Edit Route
+app.get("/:id/edit", function(req, res){
+    Blog.findById(req.params.id, function(err, foundBlog){
+        if(err){
+            console.log("THERE'S AN ERROR!!!");
+            console.log(err);
+            res.render("/");
+        } else{
+            res.render("edit.ejs", {foundBlog: foundBlog});
+        }
+    });
+});
+
+
+// Update Route
+app.put("/:id", function(req, res){
+    let title = req.body.title;
+    let image = req.body.image;
+    let body = req.body.body;
+    let updatedPost = {title: title, image: image, body: body};
+    Blog.findOneAndUpdate(req.params.id, updatedPost, function(err, postUpdater){
+        if(err){
+            console.log("THERE'S AN ERROR!!!");
+            console.log(err);
+            res.render("/");
+        } else{
+            res.redirect("/" + req.params.id);
+        }
+    });
+});
+
+
+
+
 
 
 
