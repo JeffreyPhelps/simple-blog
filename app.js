@@ -119,7 +119,18 @@ app.put("/:id", function(req, res){
 });
 
 
-
+// Destroy Route
+app.delete("/:id", function(req, res){
+    Blog.findOneAndDelete(req.params.id, function(err){
+        if(err){
+            console.log("THERE'S AN ERROR!!!");
+            console.log(err);
+            res.redirect("/");
+        } else{
+            res.redirect("/");
+        }
+    });
+});
 
 
 

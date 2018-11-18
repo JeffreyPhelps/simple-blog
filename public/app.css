@@ -25,6 +25,7 @@ body {
 #indexImage {
     width: 150px;
     height: 150px;
+    margin-bottom: 20px;
 }
 
 #indexMoreLink {
@@ -36,7 +37,9 @@ body {
     max-height: auto;
 }
 
-
+.button.red {
+    margin-top: 10px;
+}
 
 
 
