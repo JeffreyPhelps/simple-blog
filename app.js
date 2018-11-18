@@ -4,13 +4,12 @@
 
 // APP CONFIG & PACKAGES
 
+
 // Initializing Express.js NPM package
 let express = require("express");
 let app = express();
 app.use(express.static('public'));
 
-// Setting the view engine to ejs
-app.set('view engine', 'ejs');
 
 // Initializing Method-Override NPM package
 let methodOverride = require("method-override");
@@ -20,6 +19,11 @@ app.use(methodOverride("_method"));
 // Initializing body-parser NPM package
 let bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
+
+
+// Setting the view engine to ejs
+app.set('view engine', 'ejs');
+
 
 // Initializing Mongoose NPM package, setting the database name, "simpleblogdb", creating a database schema, 
 // compiling the schema into a model, and connecting the schema to a reference name, "Blog"
@@ -35,7 +39,10 @@ let Blog = mongoose.model("Blog", blogSchema);
 
 
 
+
+
 // RESTFUL ROUTES
+
 
 // Home Route
 app.get("/", function(req, res){
@@ -49,17 +56,21 @@ app.get("/", function(req, res){
     }); 
 });
 
+
 // New Post Route
 app.get("/new", function(req, res){
    res.render("newpost.ejs");
 });
 
+
 // Create New Post Route
 app.post("/", function(req, res){
+    
     let title = req.body.title;
     let image = req.body.image;
     let body = req.body.body;
     let newPost = {title: title, image: image, body: body};
+    
     Blog.create(newPost, function(err, newestPost){
         if(err){
             console.log("THERE'S AN ERROR!!!");
@@ -71,10 +82,13 @@ app.post("/", function(req, res){
             res.redirect("/");
         }
     });
+    
 });
+
 
 // Show Post Route
 app.get("/:id", function(req, res){
+    
     Blog.findById(req.params.id, function(err, showBlog){
         if(err){
             console.log("THERE'S AN ERROR!!!");
@@ -84,11 +98,13 @@ app.get("/:id", function(req, res){
             res.render("post.ejs", {showBlog: showBlog});
         }
     });
+    
 });
 
 
 // Edit Route
 app.get("/:id/edit", function(req, res){
+    
     Blog.findById(req.params.id, function(err, foundBlog){
         if(err){
             console.log("THERE'S AN ERROR!!!");
@@ -98,15 +114,18 @@ app.get("/:id/edit", function(req, res){
             res.render("edit.ejs", {foundBlog: foundBlog});
         }
     });
+    
 });
 
 
 // Update Route
 app.put("/:id", function(req, res){
+    
     let title = req.body.title;
     let image = req.body.image;
     let body = req.body.body;
     let updatedPost = {title: title, image: image, body: body};
+    
     Blog.findOneAndUpdate(req.params.id, updatedPost, function(err, postUpdater){
         if(err){
             console.log("THERE'S AN ERROR!!!");
@@ -116,11 +135,13 @@ app.put("/:id", function(req, res){
             res.redirect("/" + req.params.id);
         }
     });
+    
 });
 
 
 // Destroy Route
 app.delete("/:id", function(req, res){
+    
     Blog.findOneAndDelete(req.params.id, function(err){
         if(err){
             console.log("THERE'S AN ERROR!!!");
@@ -130,6 +151,7 @@ app.delete("/:id", function(req, res){
             res.redirect("/");
         }
     });
+    
 });
 
 

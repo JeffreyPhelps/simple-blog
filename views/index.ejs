@@ -2,16 +2,41 @@
 
 <% include partials/header %>
 
-<h2>All Posts:</h2>
-
-<% allBlogs.forEach(function(blog){ %>
-    <div id="indexPost">
-        <h2><%= blog.title %><span id="indexTitleDate"><%= blog.created.toDateString() %></span></h2>
-        <img id="indexImage" src="<%= blog.image %>">
-        <p><%= blog.body.substring(0, 120) %>...</p>
-        <a href="/<%= blog._id %>" id="indexMoreLink">READ MORE...</a>
-    </div><br><br>
-<% }); %>
+<div class="ui main text container">
+    <div class="ui huge header">Simple RESTful Blog App</div>
+    <div class="ui top attached segment">
+        <div class="ui divided items">
+            
+            <% allBlogs.forEach(function(blog){ %>
+            
+                <div class="item">
+                    
+                    <div class="image">
+                        <img src="<%= blog.image %>">
+                    </div>
+                    
+                    <div class="content">
+                        <a class="header" href="/<%= blog._id %>"><%= blog.title %></a>
+                        <div class="meta">
+                            <span><%= blog.created.toDateString() %></span>
+                        </div>
+                    </div>
+                    
+                    <div class="description">
+                        <p><%= blog.body.substring(0, 120) %>...</p>
+                    </div>
+                    
+                    <div class="extra">
+                        <a href="/<%= blog._id %>" class="ui floated basic green button">READ MORE <i class="right chevron icon"></i></a>
+                    </div>
+                    
+                </div>
+                
+            <% }); %>
+            
+        </div>
+    </div>
+</div>
 
 <% include partials/footer %>
 
